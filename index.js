@@ -1,6 +1,8 @@
 // написала на JSON'е для удобства, а потом перевела в строку
 // сделать экранирование на пробелах в строках
 // подписать ключи
+// поставить герою личную оценку (сохраняем значения в localStorage)
+// например, 10/10 или 2/10, как рейтинг
 
 class Hero {
     constructor(name, universe, alterEgo, occupation, friends, superpowers, img) {
@@ -10,9 +12,12 @@ class Hero {
             this.occupation = occupation,
             this.friends = friends,
             this.superpowers = superpowers,
-            this.img = img
+            this.img = img,
+            this.rating = this.rating
     }
 }
+
+
 
 let heroBatman = new Hero('Бэтмен', 'DC Comics', 'Брюс Уэйн', ['борец с преступностью', 'филантроп', 'миллиардер'], ['Робин', 'Бэтгерл'], ['интеллект', 'обширные познания', 'знания боевых искусств', 'ловкость'], './images/batman.jpg');
 
