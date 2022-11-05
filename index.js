@@ -12,18 +12,13 @@ class Hero {
             this.occupation = occupation,
             this.friends = friends,
             this.superpowers = superpowers,
-            this.img = img,
-            this.rating = this.rating
+            this.img = img
     }
 }
 
+let heroBatman = new Hero('Бетмен', 'DC Comics', 'Брюс Уэйн', ['борец с преступностью', 'филантроп', 'миллиардер'], ['Робин', 'Бэтгерл'], [' интеллект', ' обширные познания', ' знания боевых искусств', ' ловкость'], './images/batman.jpg');
 
-
-let heroBatman = new Hero('Бэтмен', 'DC Comics', 'Брюс Уэйн', ['борец с преступностью', 'филантроп', 'миллиардер'], ['Робин', 'Бэтгерл'], ['интеллект', 'обширные познания', 'знания боевых искусств', 'ловкость'], './images/batman.jpg');
-
-let heroSuperman = new Hero(
-    'Супермен', 'DC Comics', 'Кларк Кент', 'борец за справедливость', 'собака Крипто', ['непробиваемость', 'суперсила', 'полет', 'самоисцеление', 'суперзрение и суперслух', 'классный костюм'], './images/sumerman.jpg'
-)
+let heroSuperman = new Hero('Супермен', 'DC Comics', 'Кларк Кент', 'борец за справедливость', 'собака Крипто', [' непробиваемость', ' суперсила', ' полет', ' самоисцеление', ' суперзрение и суперслух', ' классный костюм'], './images/sumerman.jpg')
 
 let arrHeroes = [];
 arrHeroes.push(heroBatman, heroSuperman);
@@ -34,18 +29,38 @@ document.addEventListener('DOMContentLoaded', function (event) {
     for (let hero of arrHeroes) {
         heroesContent += `<div class='hero'> 
         <h2>${hero.name}</h2>
-        <div>${hero.universe}</div>
+        <div>Всеенная: ${hero.universe}</div>
         <div>${hero.alterEgo}</div>
         <div>${hero.occupation}</div>
         <div>${hero.friends}</div>
         <div>${hero.superpowers}</div>
-        <img src=${hero.img}>
-
+        <div><img src=${hero.img}></div>
+        <div>
+        Выберите рейтинг героя от 1 до 10:
+        <select id='${hero.name}'>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+<button onclick="getRatingResult('${hero.name}')">Отправить</button>
+        </div>
     </div>`
     }
+
     document.querySelector('body').innerHTML = heroesContent;
 });
 
+let arrHeroesRatings = [];
 
-// console.log(heroBatman);
-// console.log(heroSuperman);
+function getRatingResult(heroName) {
+    const heroRatingId = document.getElementById(heroName).value;
+    arrHeroesRatings.push(heroRatingId);
+    localStorage.setItem(`${heroName}`, arrHeroesRatings);
+};
